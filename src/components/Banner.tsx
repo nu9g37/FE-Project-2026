@@ -42,9 +42,9 @@ export default function Banner() {
       <button className="bg-white text-indigo-600 border border-indigo-600 
         font-semibold p-2 m-2 rounded z-30 absolute bottom-0 right-0 
         hover:bg-indigo-600 hover:text-white hover:border-transparent"
-        onClick={(e) => {e.stopPropagation(); router.push('/venue')}}
+        onClick={(e) => {e.stopPropagation(); router.push('/campground')}}
       >
-        Select Venue
+        Select Campground
       </button>
     </div>
   );
