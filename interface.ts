@@ -20,7 +20,15 @@ export interface CampgroundJson {
 }
 
 export interface BookingItem {
+  _id: string,
+  bookingDate: string,
   user: string,
   campground: string,
-  bookingDate: string
+  createAt: string
+}
+
+export interface BookingJson {
+  success: boolean,
+  count: number,
+  data: BookingItem[]
 }
