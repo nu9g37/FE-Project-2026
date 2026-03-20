@@ -33,11 +33,11 @@ export default async function venueDetailPage ( {params} : {params:Promise<{cid:
           <Link href={`/booking?id=${cid}&name=${campground.data.name}`} className="m-5">
             <Button variant="contained"
               sx={{ 
-                backgroundColor: '#ff5722', 
-                '&:hover': {
-                  backgroundColor: '#e64a19', // สีตอนเอาเมาส์ไปวาง
-                },
-              }}
+              backgroundColor: '#ff5722', 
+              '&:hover': {
+                backgroundColor: '#e64a19', // สีตอนเอาเมาส์ไปวาง
+              },
+            }}
             >
               Booking
             </Button>
