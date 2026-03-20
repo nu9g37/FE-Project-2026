@@ -5,7 +5,7 @@ import InteractiveCard from "./InteractiveCard";
 import { Rating } from "@mui/material";
 import { useState } from "react";
 
-export default function Card( { venueName , imgSrc , setRating } : { venueName:string , imgSrc:string , setRating?:Function } ) {
+export default function Card( { campgroundName , imgSrc , setRating } : { campgroundName:string , imgSrc:string , setRating?:Function } ) {
 
   const [ratingValue, setRatingValue] = useState<number | null>(0);
 
@@ -22,12 +22,12 @@ export default function Card( { venueName , imgSrc , setRating } : { venueName:s
       </div>
 
       {/* Venue Name */}
-      <div className="w-full h-[15%] p-[10px]">
-        <h4 className="underline underline-offset-1 font-sans">{venueName}</h4>
+      <div className="w-full h-[30%] p-[10px]">
+        <h4 className="font-sans text-black text-center text-lg font-semibold">{campgroundName}</h4>
       </div>
       
       {/* Rating */}
-      {
+      {/* {
         setRating? <div className="w-full h-[10%] mx-[5px]"
           onClick={(e) => {e.stopPropagation();}}
         >
@@ -42,7 +42,7 @@ export default function Card( { venueName , imgSrc , setRating } : { venueName:s
             }}
           />
         </div> : ""
-      }
+      } */}
 
     </InteractiveCard>
   );
