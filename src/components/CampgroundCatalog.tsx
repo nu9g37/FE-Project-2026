@@ -10,7 +10,7 @@ export default async function CampgroundCatalog({campgroundsJson} : {campgrounds
     <div className="m-[20px] flex flex-row flex-wrap justify-evenly content-around">
         {
           campgroundJsonReady.data.map((campgroundItem:CampgroundItem) => (
-            <Link href={`/venue/${campgroundItem.id}`}
+            <Link href={`/campground/${campgroundItem.id}`}
               key={campgroundItem.id}
               className="w-[35%]"
             >

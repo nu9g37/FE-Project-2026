@@ -7,7 +7,7 @@ export interface CampgroundItem {
   postalcode: string,
   tel: string,
   picture: string,
-  dailyrate: number,
+  region: number,
   __v: number,
   id: string
 }
@@ -20,8 +20,7 @@ export interface CampgroundJson {
 }
 
 export interface BookingItem {
-  nameLastname: string,
-  tel: string,
-  venue: string,
-  bookDate: string
+  user: string,
+  campground: string,
+  bookingDate: string
 }

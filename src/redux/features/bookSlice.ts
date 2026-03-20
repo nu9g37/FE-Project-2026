@@ -14,8 +14,8 @@ export const bookSlice = createSlice({
     addBooking: (state, action:PayloadAction<BookingItem>) => {
       const newState = state.bookItems.filter( (obj) => {
         return (
-          (obj.venue != action.payload.venue) ||
-          (obj.bookDate != action.payload.bookDate)
+          (obj.campground != action.payload.campground) ||
+          (obj.bookingDate != action.payload.bookingDate)
         )
       })
       
@@ -27,10 +27,9 @@ export const bookSlice = createSlice({
 
       const remainItems = state.bookItems.filter( (obj) => {
 
-        return ( (obj.nameLastname != action.payload.nameLastname) )
-         || (obj.tel != action.payload.tel)
-         || (obj.venue != action.payload.venue) 
-         || (obj.bookDate != action.payload.bookDate) 
+        return ( (obj.user != action.payload.user) )
+         || (obj.campground != action.payload.campground) 
+         || (obj.bookingDate != action.payload.bookingDate) 
       })
 
       state.bookItems = remainItems

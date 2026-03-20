@@ -1,35 +1,49 @@
 import Image from "next/image";
 import getCampground from "@/libs/getCampground";
+import { Button } from "@mui/material";
+import Link from "next/link";
 
-// TODO 
+export default async function venueDetailPage ( {params} : {params:Promise<{cid:string}>} ) {
 
-export default async function venueDetailPage ( {params} : {params:Promise<{vid:string}>} ) {
+  const {cid} = await params;
 
-  const {vid} = await params;
-
-  const venue = await getCampground(vid);
+  const campground = await getCampground(cid);
 
   return (
     <main className="text-center p-5">
+      <div className="m-5">
+        <h1 className="text-3xl font-semibold">{campground.data.name}</h1>
+      </div>
 
       <div className="flex flex-row">
-        <Image src={venue.data.picture}
+        <Image src={campground.data.picture}
           alt="Venue Image"
           width={0} height={0}
           sizes="100vw"
-          className="rounded-lg w-[30%]"
+          className="rounded-lg w-[50%]"
         />
 
-        <div className="text-md mx-5 text-left">
-          <h1 className="text-lg font-semibold">{venue.data.name}</h1>
-
-          <div className="font-medium mx-5">Address: {venue.data.address}</div>
-          <div className="font-medium mx-5">District: {venue.data.district}</div>
-          <div className="font-medium mx-5">Province: {venue.data.province}</div>
-          <div className="font-medium mx-5">Postal Code: {venue.data.postalcode}</div>
-          <div className="font-medium mx-5">Tel: {venue.data.tel}</div>
-          <div className="font-medium mx-5">Daily Rate: {venue.data.dailyrate}</div>
+        <div className="text-left text-xl font-semibold ml-5">
+          <div className="m-5">Address: {campground.data.address}</div>
+          <div className="m-5">District: {campground.data.district}</div>
+          <div className="m-5">Province: {campground.data.province}</div>
+          <div className="m-5">Postal Code: {campground.data.postalcode}</div>
+          <div className="m-5">Tel: {campground.data.tel}</div>
+          <div className="m-5">Region: {campground.data.region}</div>
+          <Link href={`/booking?id=${cid}&name=${campground.data.name}`} className="m-5">
+            <Button variant="contained"
+              sx={{ 
+                backgroundColor: '#ff5722', 
+                '&:hover': {
+                  backgroundColor: '#e64a19', // สีตอนเอาเมาส์ไปวาง
+                },
+              }}
+            >
+              Booking
+            </Button>
+          </Link>
         </div>
+
       </div>
     </main>
   )
