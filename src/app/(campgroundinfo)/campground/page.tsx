@@ -1,10 +1,12 @@
-import getVenues from "@/libs/getVenues"
+import getCampgrounds from "@/libs/getCampgrounds";
 import VenueCatalog from "@/components/VenueCatalog";
-import { VenueJson } from "../../../../interface";
+import { CampgroundJson } from "../../../../interface";
 
-export default async function VenuePage () {
+// TODO 
 
-  const venues:Promise<VenueJson> = await getVenues();
+export default async function CampgroundPage () {
+
+  const venues:Promise<CampgroundJson> = await getCampgrounds();
   
   return (
     <div className="m-5">

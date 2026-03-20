@@ -1,11 +1,13 @@
 import Image from "next/image";
-import getVenue from "@/libs/getVenue";
+import getCampground from "@/libs/getCampground";
+
+// TODO 
 
 export default async function venueDetailPage ( {params} : {params:Promise<{vid:string}>} ) {
 
   const {vid} = await params;
 
-  const venue = await getVenue(vid);
+  const venue = await getCampground(vid);
 
   return (
     <main className="text-center p-5">

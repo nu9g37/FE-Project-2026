@@ -1,6 +1,5 @@
 'use client'
 
-import styles from "./banner.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -22,7 +21,7 @@ export default function Banner() {
   const {data: session} = useSession();
 
   return (
-    <div className={styles.banner}>
+    <div className="block p-5 w-full h-[65vh] relative">
       <Image src={bannerImage[index]}
         alt="banner"
         fill={true}
@@ -31,7 +30,7 @@ export default function Banner() {
         onClick={() => setIndex((index + 1) % 4)}
       />
 
-      <div className={styles.bannerText}>
+      <div className="relative top-25 z-20 text-center text-white">
         <h1 className="text-4xl font-sans font-bold mb-1">where every event finds its venue</h1>
         <h3 className="text-xl font-serif">Finding the perfect venue has never been easier. Whether it's a wedding, corporate event, or private party, we connecting people to the perfect place.</h3>
       </div>

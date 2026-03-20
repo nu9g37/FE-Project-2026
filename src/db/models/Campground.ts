@@ -31,6 +31,10 @@ const CampgroundSchema = new mongoose.Schema({
   region: {
     type: String,
     required: [true, 'Please add a region']
+  },
+  picture: {
+    type: String,
+    required: false,
   }
 });
 

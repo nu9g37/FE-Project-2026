@@ -9,32 +9,35 @@ export default async function TopMenu () {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="h-[50px] z-30 bg-white fixed inset-x-0 top-0 border-gray-500 border-[1px] border-solid flex flex-row-reverse pr-[10px] items-center">
-      <Image src={'/img/logo.png'} 
-        alt="logo" 
-        className="w-auto h-[40px]" 
-        width={0} 
-        height={0} 
-        sizes="100vh"
-      />
-      <TopMenuItem title="Booking" pageRef="/booking"/>
+    <div className="h-[60px] w-full z-40 bg-blue-950 fixed inset-x-0 top-0
+    flex flex-row pl-[10px] items-center justify-between mx-auto">
 
-      <div className="absolute left-0 top-0 items-center flex flex-row h-full text-cyan-600 underline underline-offset-1">
+      {/* Left Side */}
+      <div className=" left-0 top-0 items-center flex flex-row h-full text-cyan-600">
+        <h1 className="w-[120px] text-center text-white text-2xl font-bold font-sans">LOGO</h1>
+        <TopMenuItem title="Home" pageRef="/"/>
+        <TopMenuItem title="Booking" pageRef="/booking"/>
+        <TopMenuItem title="Campground" pageRef="/campground"/>
+      </div>
+
+      {/* Right Side */}
+      <div className="right-0 top-0 items-center flex flex-row h-full">
+        <TopMenuItem title="My Booking" pageRef="/mybooking"/>
         {
           session? 
           <Link href={"/api/auth/signout"}>
-            <div className="px-3 mx-3">
+            <div className="w-[120px] text-center my-auto font-sans text-white font-bold hover:text-gray-500">
               Sign-Out
             </div>
           </Link> :
           <Link href={"/api/auth/signin"}>
-            <div className="px-3 mx-3">
+            <div className="w-[120px] text-center my-auto font-sans text-white font-bold hover:text-gray-500">
               Sign-In
             </div>
           </Link>
         }
-        <TopMenuItem title="My Booking" pageRef="/mybooking"/>
       </div>
+
     </div>
   );
 }
