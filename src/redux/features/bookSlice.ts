@@ -1,41 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BookingItem } from "../../../interface";
+import { BookingItem } from "../../../interface"; // เช็ค path ให้ตรงกับโปรเจกต์คุณด้วยนะครับ
 
 type BookState = {
   bookItems: BookingItem[];
 }
 
-const initialState:BookState = { bookItems:[] }
+const initialState: BookState = { bookItems: [] }
 
 export const bookSlice = createSlice({
   name: "book",
   initialState,
   reducers: {
-    addBooking: (state, action:PayloadAction<BookingItem>) => {
-      const newState = state.bookItems.filter( (obj) => {
-        return (
-          (obj.campground != action.payload.campground) ||
-          (obj.bookingDate != action.payload.bookingDate)
-        )
-      })
-      
-      newState.push(action.payload)
 
-      state.bookItems = newState;
+    setBookings: (state, action: PayloadAction<BookingItem[]>) => {
+      state.bookItems = action.payload;
     },
-    removeBooking: (state, action:PayloadAction<BookingItem>) => {
 
-      const remainItems = state.bookItems.filter( (obj) => {
+    addBooking: (state, action: PayloadAction<BookingItem>) => {
+      state.bookItems.push(action.payload);
+    },
 
-        return ( (obj.user != action.payload.user) )
-         || (obj.campground != action.payload.campground) 
-         || (obj.bookingDate != action.payload.bookingDate) 
-      })
-
-      state.bookItems = remainItems
+    removeBooking: (state, action: PayloadAction<string>) => {
+      state.bookItems = state.bookItems.filter(
+        (obj) => obj._id !== action.payload
+      );
     }
   }
 })
 
-export const { addBooking, removeBooking } = bookSlice.actions
-export default bookSlice.reducer
+export const { setBookings, addBooking, removeBooking } = bookSlice.actions;
+export default bookSlice.reducer;

@@ -1,34 +1,60 @@
-"use client"
+"use client";
 
-import { useAppSelector } from "@/redux/store"
-import { useDispatch } from "react-redux"
-import { AppDispatch } from "@/redux/store"
-import { removeBooking } from "@/redux/features/bookSlice"
-import { Button } from "@mui/material"
+import { useEffect } from "react";
+import { useAppSelector, AppDispatch } from "@/redux/store"; // เช็ค path ด้วยนะครับ
+import { useDispatch } from "react-redux";
+import { setBookings } from "@/redux/features/bookSlice"; // เช็ค path ด้วยนะครับ
+import { BookingItem } from "../../interface";
+import BookingButton from "./BookingButton";
 
-export default function BookingList() {
+type Props = {
+  initialData: BookingItem[];
+  token: string;
+};
 
-  const bookingItem = useAppSelector((state) => state.bookSlice);
-
+export default function BookingList({ initialData, token }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   
+  // ดึงข้อมูลจาก Redux มาใช้แทน useState
+  const bookings = useAppSelector((state) => state.bookSlice.bookItems);
+
+  // เมื่อโหลด Component ครั้งแรก ให้นำ initialData จาก DB ไปทับใน Redux
+  useEffect(() => {
+    if (initialData) {
+      dispatch(setBookings(initialData));
+    }
+  }, [initialData, dispatch]);
+
   return (
-    <div className="flex flex-row flex-wrap justify-center mt-5">
-      {
-        bookingItem.bookItems.length?
-        bookingItem.bookItems.map((bookItem) => (
-          <div key={bookItem.bookDate + " " + bookItem.venue}
-            className="bg-slate-200 w-fit h-fit m-5 p-5 rounded-lg shadow-lg"
-          >
-            <div>Name-Lastname: {bookItem.nameLastname}</div>
-            <div>Tel. {bookItem.tel}</div>
-            <div>Venue: {bookItem.venue}</div>
-            <div>Date: {bookItem.bookDate}</div>
-            <Button variant="contained" onClick={() => dispatch(removeBooking(bookItem))}>Remove Booking</Button>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {bookings.map((item) => (
+        <div key={item._id} className="bg-sky-950 rounded-xl p-5 shadow-md">
+          <div className="text-xl font-semibold">
+            {item.campground.name}
           </div>
-        )) :
-        <div className="text-2xl font-semibold">No Venue Booking</div>
-      }
+          <div className="text-sm text-gray-300 mb-3">
+            {item.campground.province}
+          </div>
+
+          <div className="text-sm space-y-1">
+            <div><span className="font-medium">User:</span> {item.user.name}</div>
+            <div><span className="font-medium">Tel:</span> {item.campground.tel}</div>
+          </div>
+
+          <div className="border-t border-gray-600 my-3"></div>
+
+          <div className="text-sm">
+            <div>Booking: {new Date(item.bookingDate).toLocaleDateString("th-TH")}</div>
+            <div>Created: {new Date(item.createAt).toLocaleDateString("th-TH")}</div>
+          </div>
+
+          {/* เอา onDelete ออก เพราะเราจะให้ปุ่มจัดการลบผ่าน Redux เองเลย */}
+          <BookingButton
+            id={item._id}
+            token={token}
+          />
+        </div>
+      ))}
     </div>
-  )
+  );
 }

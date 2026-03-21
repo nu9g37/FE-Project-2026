@@ -1,3 +1,4 @@
+import { experimental_sx } from "@mui/material/styles";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
