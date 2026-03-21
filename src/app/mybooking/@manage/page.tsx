@@ -1,7 +1,7 @@
 import getBookings from "@/libs/getBookings"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions"
-import { BookingJson, BookingItem } from "../../../../interface";
+import { BookingJson, BookingItem, CampgroundItemp } from "../../../../interface";
 
 export default async function ManagePage() {
   
@@ -22,8 +22,10 @@ export default async function ManagePage() {
           (await bookings).count?
           (await bookings).data.map((item:BookingItem) => (
             <div key={item._id} className="bg-sky-950 rounded-lg my-5 mr-auto p-5 w-[45%]">
-              <div className="text-lg font-sans">User: {item.user}</div>
-              <div className="text-lg font-sans">Campground: {item.campground}</div>
+              <div className="text-lg font-sans">User: {item.user.name}</div>
+              <div className="text-lg font-sans">Campground: {item.campground.name}</div>
+              <div className="text-lg font-sans">Province: {item.campground.province}</div>
+              <div className="text-lg font-sans">Tel. {item.campground.tel}</div>
               <div className="text-lg font-sans">Booking Date: {(new Date(item.bookingDate)).toString()}</div>
               <div className="text-lg font-sans">Create At: {(new Date(item.createAt)).toString()}</div>
             </div>

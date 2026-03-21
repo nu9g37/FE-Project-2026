@@ -23,7 +23,21 @@ export interface BookingItem {
   _id: string,
   bookingDate: string,
   user: string,
-  campground: string,
+  campground: CampgroundItem,
+  createAt: string
+}
+
+export interface UserJson {
+  success: boolean,
+  data: UserItem
+}
+
+export interface UserItem {
+  _id: string,
+  name: string,
+  tel: string,
+  email: string,
+  role: string,
   createAt: string
 }
 

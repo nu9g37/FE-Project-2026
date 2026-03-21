@@ -29,7 +29,7 @@ export const authOptions: AuthOptions = {
   
           return {
             ...userData.data,
-            accessToken: token,
+            token
           };
           
 
@@ -49,5 +49,8 @@ export const authOptions: AuthOptions = {
 
       return session;
     }
+  },
+  pages: {
+    signIn: '/login',
   }
 }

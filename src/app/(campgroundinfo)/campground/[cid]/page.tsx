@@ -2,12 +2,16 @@ import Image from "next/image";
 import getCampground from "@/libs/getCampground";
 import { Button } from "@mui/material";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 export default async function venueDetailPage ( {params} : {params:Promise<{cid:string}>} ) {
 
   const {cid} = await params;
 
   const campground = await getCampground(cid);
+
+  const session = await getServerSession(authOptions);
 
   return (
     <main className="text-center p-5">

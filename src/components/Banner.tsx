@@ -20,6 +20,8 @@ export default function Banner() {
 
   const {data: session} = useSession();
 
+  console.log(session)
+
   return (
     <div className="block p-5 w-full h-[65vh] relative">
       <Image src={bannerImage[index]}
