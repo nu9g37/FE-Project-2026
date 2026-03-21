@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import userRegister from "@/libs/userRegister"
+import Link from "next/link";
 
 export default function RegisterPage() {
 
@@ -60,9 +61,16 @@ export default function RegisterPage() {
           </div>
           
           <div className="flex justify-center my-10">
-            <button type="submit" className="bg-green-600 text-lg text-white font-semibold px-5 py-2 rounded-lg hover:bg-green-800 shadow-lg hover:shadow-2xl">
-              Submit
+            <button type="submit" className="bg-green-600 font-sans text-white font-semibold px-5 py-2 rounded-lg hover:bg-green-800 shadow-lg hover:shadow-2xl w-[70%]">
+              Register
             </button>
+          </div>
+
+          <div className="mt-30 flex justify-center">
+            Don't have an account ?
+            <Link href={"/login"} className="mx-2">
+              <h1 className="underline underline-offset-1">Signin Here</h1>
+            </Link>
           </div>
 
         </form>

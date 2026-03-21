@@ -1,20 +1,39 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import userRegister from "@/libs/userRegister"
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 
-export default function RegisterPage() {
+export default function LoginPage() {
 
   const router = useRouter();
 
-  
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
+    const result = await signIn("credentials", {
+      email: formData.get("userEmail") as string,
+      password: formData.get("userPassword") as string,
+      redirect: false, 
+    });
+
+    if (result?.error) {
+      console.log(result.error);
+
+      alert("Username or Password is incorrect");
+    } else {
+      router.push("/"); 
+      router.refresh();
+    }
+  };
 
   return (
     <main className="flex justify-center p-5">
       <div className="m-5 bg-sky-900 rounded-lg w-1/3">
         <div className="bg-sky-950 text-center text-2xl font-bold p-5 rounded-t-lg">Login</div>
 
-        <form className="my-10">
+        <form className="my-10" onSubmit={handleSubmit}>
 
           <div className="flex justify-center my-10">
             <input type="email" id="userEmail" name="userEmail" placeholder="Email" 
@@ -29,16 +48,20 @@ export default function RegisterPage() {
           </div>
           
           <div className="flex justify-center my-10">
-            <button type="submit" className="bg-green-600 text-lg text-white font-semibold px-5 py-2 rounded-lg hover:bg-green-800 shadow-lg hover:shadow-2xl">
-              Submit
+            <button type="submit" className="bg-green-600 text-lg text-white font-semibold px-5 py-2 rounded-lg hover:bg-green-800 shadow-lg hover:shadow-2xl w-[70%]">
+              Login
             </button>
           </div>
 
+          <div className="mt-30 flex justify-center">
+            Don't have an account ?
+            <Link href={"/register"} className="mx-2">
+              <h1 className="underline underline-offset-1">Register Here</h1>
+            </Link>
+          </div>
+          
         </form>
 
-        <div>
-          Don't have an account?
-        </div>
       </div>
     </main>
   )
