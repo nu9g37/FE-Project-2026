@@ -12,11 +12,11 @@ export default async function ManagePage() {
   }
 
   const bookings:Promise<BookingJson> = await getBookings(session.user.token);
+  console.log(bookings)
   
   return (
     <main className="m-10">
       <div className="text-2xl font-semibold font-sans mb-2">My Booking</div>
-
       <div className="flex flex-row flex-wrap">
         {
           (await bookings).count?
