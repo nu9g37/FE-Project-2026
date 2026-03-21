@@ -1,7 +1,7 @@
 import getBookings from "@/libs/getBookings"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions"
-import { BookingJson, BookingItem, CampgroundItemp } from "../../../../interface";
+import { BookingJson, BookingItem, CampgroundItem } from "../../../../interface";
 
 export default async function ManagePage() {
   

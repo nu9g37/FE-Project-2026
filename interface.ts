@@ -22,7 +22,7 @@ export interface CampgroundJson {
 export interface BookingItem {
   _id: string,
   bookingDate: string,
-  user: string,
+  user: UserItem,
   campground: CampgroundItem,
   createAt: string
 }
