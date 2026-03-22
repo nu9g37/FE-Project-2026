@@ -13,7 +13,7 @@ export default async function ManagePage() {
 
   return (
     <main className="m-10">
-      <div className="text-2xl font-semibold mb-4">My Booking</div>
+      <div className="text-green-800 text-2xl font-bold mb-5">My Booking</div>
 
       <BookingList
         initialData={bookings.data}

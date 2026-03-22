@@ -15,6 +15,7 @@ import { useSession } from "next-auth/react";
 export default function Booking() {
   const searchParams = useSearchParams();
   const campgroundId = searchParams.get("campground");
+  const campgroundName = searchParams.get("name");
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -50,13 +51,13 @@ export default function Booking() {
   };
 
   return (
-    <div className="m-5">
-      <div className="text-center text-2xl font-bold">
+    <div className="text-center text-green-950 m-5 my-15">
+      <div className="text-3xl font-bold">
         Booking Campground
       </div>
 
-      <div className="text-center mt-5">
-        Campground ID: {campgroundId}
+      <div className="text-xl mt-10 font-semibold">
+        You are booking for {campgroundName}
       </div>
 
       <div className="flex flex-row justify-center mt-10 gap-5">

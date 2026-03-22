@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 export default function Banner() {
 
@@ -18,18 +17,15 @@ export default function Banner() {
 
   const router = useRouter();
 
-  const {data: session} = useSession();
-
-  console.log(session)
-
   return (
-    <div className="block p-5 w-full h-[65vh] relative">
+    <div className="block p-5 w-[80%] h-[65vh] relative">
       <Image src={bannerImage[index]}
         alt="banner"
         fill={true}
         priority
         objectFit="cover"
         onClick={() => setIndex((index + 1) % 4)}
+        className="rounded-lg"
       />
 
       {/* <div className="relative top-25 z-20 text-center text-white">
@@ -37,16 +33,12 @@ export default function Banner() {
         <h3 className="text-xl font-serif">Finding the perfect venue has never been easier. Whether it's a wedding, corporate event, or private party, we connecting people to the perfect place.</h3>
       </div> */}
 
-      {
-        session? <div className="z-30 absolute top-5 right-10 font-semibold text-white text-xl">Welcome {session.user.name}</div> : null
-      }
-
-      <button className="bg-blue-950 text-white
-        font-semibold p-2 m-2 rounded z-30 absolute bottom-0 right-0 
-        hover:bg-white hover:text-blue-950"
+      <button className="bg-green-800 text-white text-lg
+        font-semibold p-2 m-5 rounded z-30 absolute bottom-0 right-0 
+        hover:bg-[#f8f6f2] hover:text-green-800"
         onClick={(e) => {e.stopPropagation(); router.push('/campground')}}
       >
-        Select Campground
+        Start Exploring
       </button>
     </div>
   );

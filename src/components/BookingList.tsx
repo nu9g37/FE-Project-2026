@@ -54,7 +54,7 @@ export default function BookingList({ initialData, token }: Props) {
           <div className="text-sm text-gray-300 mb-3">{item.campground.province}</div>
           <div className="text-sm space-y-1">
             <div><span className="font-medium">User:</span> {item.user.name}</div>
-            <div><span className="font-medium">Tel:</span> {item.campground.tel}</div>
+            <div><span className="font-medium">Campground Tel.</span> {item.campground.tel}</div>
           </div>
 
             <div className="border-t border-gray-600 my-3"></div>

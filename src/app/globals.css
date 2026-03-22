@@ -20,13 +20,13 @@ body {
 
 body {
   color: white;
-  background: rgb(81, 95, 144);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(248, 246, 242);
+  font-family: Calibre, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
   /* เลื่อนให้ไม่โดน TopMenu ทับ */
-  padding-top: 60px;
+  padding-top: 65px;
 }
 
 * {

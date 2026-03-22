@@ -18,13 +18,13 @@ export default async function ProfilePage() {
 
   return (
     <main className="m-10">
-      <div className="text-2xl font-semibold font-sans mb-2">Profile</div>
+      <div className="text-green-800 text-2xl font-bold mb-2">Profile</div>
 
       <div className="bg-sky-950 w-1/2 rounded-lg p-5 my-5">
-        <div className="text-lg font-sans">Name: {profileReady.data.name}</div>
-        <div className="text-lg font-sans">Email: {profileReady.data.email}</div>
-        <div className="text-lg font-sans">Tel. {profileReady.data.tel}</div>
-        <div className="text-lg font-sans">Member Since {createdAt.toString()}</div>
+        <div className="text-lg my-2">Name: {profileReady.data.name}</div>
+        <div className="text-lg my-2">Email: {profileReady.data.email}</div>
+        <div className="text-lg my-2">Tel. {profileReady.data.tel}</div>
+        <div className="text-lg my-2">Member Since {createdAt.toString()}</div>
       </div>
     </main>
   )
