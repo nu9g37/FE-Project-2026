@@ -46,7 +46,9 @@ export default function BookingList({ initialData, token }: Props) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {bookings.map((item) => (
+      {
+      bookings.length ?
+      bookings.map((item) => (
         <div key={item._id} className="bg-sky-950 rounded-xl p-5 shadow-md">
           <div className="text-xl font-semibold">{item.campground.name}</div>
           <div className="text-sm text-gray-300 mb-3">{item.campground.province}</div>
@@ -83,7 +85,11 @@ export default function BookingList({ initialData, token }: Props) {
             onSave={() => handleSave(item._id)}
           />
         </div>
-      ))}
+      )): 
+        <div className="bg-sky-950 rounded-xl p-5 shadow-md text-lg font-semibold text-center">
+          No Campground Booking
+        </div>
+    }
     </div>
   );
 }

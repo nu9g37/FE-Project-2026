@@ -42,7 +42,7 @@ export default function LoginPage() {
           </div>
 
           <div className="flex justify-center my-10">
-            <input type="password" id="userPassword" name="userPassword" placeholder="Password" 
+            <input type="password" minLength={6} id="userPassword" name="userPassword" placeholder="Password" 
             className="bg-white py-2 px-5 mx-5 rounded-lg 
             w-[70%] placeholder-gray-500 text-black focus:border-2 focus:border-blue-400 focus:outline-none shadow-lg focus:shadow-2xl"/>
           </div>
