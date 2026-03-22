@@ -24,7 +24,11 @@ export default function Booking() {
   const [bookDate, setBookDate] = useState<Dayjs | null>(null);
 
   const makeBooking = async () => {
-    if (!bookDate || !campgroundId || !session?.user?.token) return;
+    if (!bookDate || !campgroundId || !session?.user?.token) {
+      alert("Please select Campground and Booking Date")
+      
+      return;
+    }
     
     try {
       // 1. ส่งข้อมูลเข้า Database
@@ -41,10 +45,13 @@ export default function Booking() {
         console.log("Booking success:", res);
         
         // แนะนำ: พอจองเสร็จควรพากลับไปหน้ารายการจอง
-        // router.push('/manage'); // <- ถ้า path ไปหน้ารายการจองชื่ออื่น แก้ได้เลยนะครับ
+        alert("Booking Successfully")
+        router.push('/mybooking'); // <- ถ้า path ไปหน้ารายการจองชื่ออื่น แก้ได้เลยนะครับ
       }
 
     } catch (err) {
+      alert("You can only book 3 Booking")
+
       console.error("Booking failed:", err);
     }
   };
