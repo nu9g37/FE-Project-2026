@@ -22,7 +22,11 @@ export default function Booking() {
   const [bookDate, setBookDate] = useState<Dayjs | null>(null);
 
   const makeBooking = async () => {
-    if (!bookDate || !campgroundId || !session?.user?.token) return;
+    if (!bookDate || !campgroundId || !session?.user?.token) {
+      alert("Please select Campground and Booking Date")
+      
+      return;
+    }
     
     try {
       const res = await addBookingAPI(
@@ -34,10 +38,13 @@ export default function Booking() {
       if (res.success) {
         dispatch(addBookingRedux(res.data));
         
+        alert("Booking Successfully")
         router.push('/mybooking');
       }
 
     } catch (err) {
+      alert("You can only book 3 Booking")
+
       console.error("Booking failed:", err);
     }
   };

@@ -55,7 +55,7 @@ export default function BookingList({ initialData, token }: Props) {
             <div><span className="font-medium">Tel:</span> {item.campground.tel}</div>
           </div>
 
-          <div className="border-t border-gray-600 my-3"></div>
+            <div className="border-t border-gray-600 my-3"></div>
 
           <div className="text-sm">
             {editingId === item._id ? (
