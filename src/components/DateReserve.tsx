@@ -6,13 +6,14 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { Dayjs } from "dayjs"
 import { useState } from "react"
 
-export default function DateReserve ({onDateChange} : {onDateChange:Function}) {
-
-  const [bookingDate, setBookingDate] = useState<Dayjs | null>(null) 
+export default function DateReserve ({onDateChange,value} : {onDateChange:Function,value:Dayjs | null}) {
   
   return (
     <LocalizationProvider dateAdapter={ AdapterDayjs }>
-      <DatePicker onChange={(value) => {setBookingDate(value); onDateChange(value);}}/>
+      <DatePicker 
+        value={value} 
+        onChange={(newValue) => onDateChange(newValue)}
+      />
     </LocalizationProvider>
   );
 }

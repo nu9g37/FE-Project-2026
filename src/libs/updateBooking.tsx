@@ -1,6 +1,6 @@
 export default async function updateBooking(
   bookingId: string,
-  campground:string,
+  // campground:string,
   bookingDate: string,
   token: string
 ) {
@@ -12,7 +12,7 @@ export default async function updateBooking(
     },
     body: JSON.stringify({
       bookingDate: bookingDate,
-      campground: campground,
+      // campground: campground,
     }),
   });
 

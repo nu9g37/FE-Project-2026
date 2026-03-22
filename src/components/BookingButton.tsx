@@ -8,32 +8,54 @@ import { removeBooking } from "@/redux/features/bookSlice";
 type Props = {
   id: string;
   token: string;
+  isEditing: boolean;
+  onEdit: () => void;
+  onCancel: () => void;
+  onSave: () => void;
 };
 
-export default function BookingButton({ id, token }: Props) {
+export default function BookingButton({ id, token, isEditing, onEdit, onCancel, onSave }: Props) {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDelete = async () => {
     try {
-      // 1. ลบจาก Database
       await deleteBooking(id, token);
-      
-      // 2. พอลบ DB สำเร็จ ค่อยสั่งลบออกจาก Redux เพื่อให้ UI อัปเดตทันที
       dispatch(removeBooking(id));
-      
     } catch (error) {
       console.error("Failed to delete booking", error);
     }
   };
 
+  if (isEditing) {
+    return (
+      <div className="flex justify-end gap-2 mt-4">
+        <button 
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+          onClick={onCancel}
+        >
+          Cancel
+        </button>
+        <button 
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+          onClick={onSave}
+        >
+          Save
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex justify-end gap-2 mt-4">
-      <button className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium">
+      <button 
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+        onClick={onEdit}
+      >
         Edit
       </button>
 
       <button
-        className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-sm font-medium"
+        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
         onClick={handleDelete}
       >
         Delete

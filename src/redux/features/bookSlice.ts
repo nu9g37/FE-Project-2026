@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BookingItem } from "../../../interface"; // เช็ค path ให้ตรงกับโปรเจกต์คุณด้วยนะครับ
+import { BookingItem } from "../../../interface";
 
 type BookState = {
   bookItems: BookingItem[];
@@ -24,9 +24,19 @@ export const bookSlice = createSlice({
       state.bookItems = state.bookItems.filter(
         (obj) => obj._id !== action.payload
       );
+    },
+
+    updateBooking: (state, action: PayloadAction<{ _id: string; bookingDate: string }>) => {
+      const index = state.bookItems.findIndex(
+        (item) => item._id === action.payload._id
+      );
+
+      if (index !== -1) {
+        state.bookItems[index].bookingDate = action.payload.bookingDate;
+      }
     }
   }
 })
 
-export const { setBookings, addBooking, removeBooking } = bookSlice.actions;
+export const { setBookings, addBooking, removeBooking, updateBooking } = bookSlice.actions;
 export default bookSlice.reducer;
