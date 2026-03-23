@@ -23,15 +23,17 @@ export default function LoginPage() {
 
       alert("Username or Password is incorrect");
     } else {
+      alert("Login Succesfully")
+
       router.push("/"); 
       router.refresh();
     }
   };
 
   return (
-    <main className="flex justify-center p-5">
-      <div className="m-5 bg-sky-900 rounded-lg w-1/3">
-        <div className="bg-sky-950 text-center text-2xl font-bold p-5 rounded-t-lg">Login</div>
+    <main className="flex justify-center p-5 m-10">
+      <div className="m-5 bg-green-900 rounded-lg w-1/3 shadow-2xl shadow-black">
+        <div className="bg-green-950 text-center text-2xl font-bold p-5 rounded-t-lg">Login</div>
 
         <form className="my-10" onSubmit={handleSubmit}>
 
@@ -54,7 +56,7 @@ export default function LoginPage() {
           </div>
 
           <div className="mt-30 flex justify-center">
-            Don't have an account ?
+            Don't have an accounts?
             <Link href={"/register"} className="mx-2">
               <h1 className="underline underline-offset-1">Register Here</h1>
             </Link>

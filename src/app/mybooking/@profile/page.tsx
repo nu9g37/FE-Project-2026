@@ -20,11 +20,11 @@ export default async function ProfilePage() {
     <main className="m-10">
       <div className="text-green-800 text-2xl font-bold mb-2">Profile</div>
 
-      <div className="bg-sky-950 w-1/2 rounded-lg p-5 my-5">
-        <div className="text-lg my-2">Name: {profileReady.data.name}</div>
-        <div className="text-lg my-2">Email: {profileReady.data.email}</div>
-        <div className="text-lg my-2">Tel. {profileReady.data.tel}</div>
-        <div className="text-lg my-2">Member Since {createdAt.toString()}</div>
+      <div className="bg-emerald-800 w-full rounded-lg p-5 my-5 shadow-2xl text-white text-lg font-semibold">
+        <div className="my-2">Name: {profileReady.data.name}</div>
+        <div className="my-2">Email: {profileReady.data.email}</div>
+        <div className="my-2">Tel. {profileReady.data.tel}</div>
+        <div className="my-2">Member Since {createdAt.toString()}</div>
       </div>
     </main>
   )

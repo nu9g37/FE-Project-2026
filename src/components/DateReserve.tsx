@@ -13,6 +13,7 @@ export default function DateReserve ({onDateChange,value} : {onDateChange:Functi
       <DatePicker 
         value={value} 
         onChange={(newValue) => onDateChange(newValue)}
+        disablePast
       />
     </LocalizationProvider>
   );

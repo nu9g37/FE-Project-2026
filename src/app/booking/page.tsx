@@ -52,11 +52,11 @@ export default function Booking() {
 
   return (
     <div className="text-center text-green-950 m-5 my-15">
-      <div className="text-3xl font-bold">
+      <div className="text-4xl font-bold">
         Booking Campground
       </div>
 
-      <div className="text-xl mt-10 font-semibold">
+      <div className="text-2xl mt-10 font-semibold">
         You are booking for {campgroundName}
       </div>
 

@@ -15,12 +15,12 @@ export default async function venueDetailPage ( {params} : {params:Promise<{cid:
         <h1 className="text-3xl text-green-950 font-semibold my-15">{campground.data.name}</h1>
       </div>
 
-      <div className="flex flex-row mx-15">
+      <div className="flex flex-row mx-15 p-10 shadow-md rounded-lg shadow-black">
         <Image src={campground.data.picture}
           alt="Campground Image"
           width={0} height={0}
           sizes="100vw"
-          className="rounded-lg w-[50%]"
+          className="rounded-lg w-[50%] shadow-lg"
         />
 
         <div className="text-left text-green-950 text-xl font-semibold ml-5">

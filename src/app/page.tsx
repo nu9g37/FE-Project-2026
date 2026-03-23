@@ -10,7 +10,7 @@ export default async function Home() {
     <main>
       {
         session ? 
-        <div className="text-black text-xl font-semibold my-5 ml-5">
+        <div className="text-black text-xl font-semibold my-5 mx-5 text-right">
           Welcome {session.user.name}
         </div> : null
       }

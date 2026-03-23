@@ -21,28 +21,10 @@ export default function Card( { campgroundName , imgSrc , setRating } : { campgr
         />
       </div>
 
-      {/* Venue Name */}
+      {/* Campground Name */}
       <div className="w-full h-[30%] p-[10px]">
         <h4 className="font-sans text-black text-center text-lg font-semibold">{campgroundName}</h4>
       </div>
-      
-      {/* Rating */}
-      {/* {
-        setRating? <div className="w-full h-[10%] mx-[5px]"
-          onClick={(e) => {e.stopPropagation();}}
-        >
-          <Rating
-            id={venueName + " Rating"}
-            name={venueName + " Rating"}
-            data-testid={venueName + " Rating"}
-            value={ratingValue}
-            onChange={(event, newRating) => {
-              setRatingValue(newRating);
-              setRating(venueName, newRating);
-            }}
-          />
-        </div> : ""
-      } */}
 
     </InteractiveCard>
   );

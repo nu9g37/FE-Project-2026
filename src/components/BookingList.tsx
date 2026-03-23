@@ -49,7 +49,7 @@ export default function BookingList({ initialData, token }: Props) {
       {
       bookings.length ?
       bookings.map((item) => (
-        <div key={item._id} className="bg-sky-950 rounded-xl p-5 shadow-md">
+        <div key={item._id} className="bg-emerald-600 rounded-xl p-5 shadow-md shadow-black">
           <div className="text-xl font-semibold">{item.campground.name}</div>
           <div className="text-sm text-gray-300 mb-3">{item.campground.province}</div>
           <div className="text-sm space-y-1">
@@ -57,11 +57,11 @@ export default function BookingList({ initialData, token }: Props) {
             <div><span className="font-medium">Campground Tel.</span> {item.campground.tel}</div>
           </div>
 
-            <div className="border-t border-gray-600 my-3"></div>
+            <div className="border-t border-black my-3"></div>
 
           <div className="text-sm">
             {editingId === item._id ? (
-              <div className="my-2 p-2 bg-white rounded">
+              <div className="my-2 p-2  rounded">
                 <DateReserve value={editDate} onDateChange={(value: Dayjs) => setEditDate(value)} />
               </div>
             ) : (
@@ -86,7 +86,7 @@ export default function BookingList({ initialData, token }: Props) {
           />
         </div>
       )): 
-        <div className="bg-sky-950 rounded-xl p-5 shadow-md text-lg font-semibold text-center">
+        <div className="bg-emerald-600 rounded-xl p-5 shadow-md text-lg font-semibold text-center">
           No Campground Booking
         </div>
     }
