@@ -1,22 +1,31 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ZoerMYa3)
-# 🏕️ Campground Booking App
+# 🏕️ CampNest
 
-A full-stack web application for browsing and booking campgrounds, built with **Next.js 15**, **TypeScript**, **Redux Toolkit**, and **NextAuth.js**.
+> **Escape the Ordinary, Embrace the Wild.**
+> Discover hidden gems and wake up to the soundtrack of nature.
 
----
-
-## 📋 Features
-
-- **Authentication** — Register, login, and logout via JWT-based credentials (NextAuth.js)
-- **Campground Browsing** — View all available campgrounds with images and details
-- **Campground Detail** — See full info (address, district, province, postal code, tel, region)
-- **Booking System** — Create, view, edit, and delete campground bookings
-- **My Booking Page** — Parallel route layout showing user profile and booking management
-- **Persistent State** — Redux Persist keeps booking state across page refreshes
+🔗 **Live Demo:** [https://fe-project-2026.vercel.app/](https://fe-project-2026.vercel.app/)
 
 ---
 
-## 🛠️ Tech Stack
+## Overview
+
+CampNest is a full-stack campground booking web application built with **Next.js 15**. Users can browse campgrounds across Thailand, view details, and manage their reservations — all through a clean and responsive interface.
+
+---
+
+## Features
+
+- 🔐 **Authentication** — Register, login, and logout via NextAuth.js with JWT sessions
+- 🏕️ **Campground Catalog** — Browse and explore available campgrounds with images and details
+- 📅 **Booking System** — Book a campground by selecting a date; limited to 3 bookings per user
+- ✏️ **Manage Bookings** — View, edit, and delete your bookings from the My Booking page
+- 👤 **User Profile** — View your profile information on the My Booking page
+- 💾 **Persistent State** — Redux Toolkit with Redux Persist keeps booking state across sessions
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -24,151 +33,140 @@ A full-stack web application for browsing and booking campgrounds, built with **
 | Language | TypeScript |
 | Styling | Tailwind CSS |
 | UI Components | Material UI (MUI) |
-| Auth | NextAuth.js (Credentials Provider) |
+| Authentication | NextAuth.js |
 | State Management | Redux Toolkit + Redux Persist |
+| Database | MongoDB via Mongoose |
 | Date Picker | MUI X Date Pickers + Day.js |
-| Database (Model) | Mongoose / MongoDB |
-| Backend API | Express REST API (localhost:5000) |
+| Deployment | Vercel |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── (auth)/
-│   │   ├── login/         # Login page
-│   │   ├── register/      # Register page
-│   │   └── logout/        # Logout confirmation page
-│   ├── (campgroundinfo)/
-│   │   └── campground/
-│   │       ├── page.tsx           # Campground listing page
-│   │       └── [cid]/page.tsx     # Campground detail page
-│   ├── mybooking/
-│   │   ├── page.tsx               # My Booking root page
-│   │   ├── layout.tsx             # Parallel routes layout
-│   │   ├── @profile/page.tsx      # User profile slot
-│   │   └── @manage/page.tsx       # Booking management slot
-│   ├── booking/
-│   │   └── page.tsx               # Create booking page
-│   └── api/auth/[...nextauth]/    # NextAuth route handler & options
-├── components/
-│   ├── TopMenu.tsx          # Navigation bar
-│   ├── TopMenuItem.tsx      # Nav link item
-│   ├── Banner.tsx           # Homepage image carousel
-│   ├── Card.tsx             # Campground card
-│   ├── CardPanel.tsx        # Client-side campground grid
-│   ├── CampgroundCatalog.tsx # Server-side campground grid
-│   ├── InteractiveCard.tsx  # Hover-effect card wrapper
-│   ├── DateReserve.tsx      # MUI date picker wrapper
-│   ├── BookingList.tsx      # Booking list with edit/delete
-│   └── BookingButton.tsx    # Edit / Delete / Save / Cancel buttons
-├── libs/
-│   ├── userLogIn.tsx        # POST /auth/login
-│   ├── userRegister.tsx     # POST /auth/register
-│   ├── getUserProfile.tsx   # GET /auth/me
-│   ├── getCampgrounds.tsx   # GET /campgrounds
-│   ├── getCampground.tsx    # GET /campgrounds/:id
-│   ├── addBooking.tsx       # POST /campgrounds/:id/bookings
-│   ├── getBookings.tsx      # GET /bookings
-│   ├── getBooking.tsx       # GET /bookings/:id
-│   ├── updateBooking.tsx    # PUT /bookings/:id
-│   └── deleteBooking.tsx    # DELETE /bookings/:id
-├── redux/
-│   ├── store.ts             # Redux store with persist config
-│   ├── ReduxProvider.tsx    # Redux + PersistGate provider
-│   └── features/
-│       └── bookSlice.ts     # Booking state slice
-├── providers/
-│   └── NextAuthProvider.tsx # Session provider wrapper
+│   ├── (auth)/               # Login, Register, Logout pages
+│   ├── (campgroundinfo)/     # Campground listing and detail pages
+│   ├── api/auth/             # NextAuth route handler & options
+│   ├── booking/              # Booking creation page
+│   ├── mybooking/            # My Booking page with parallel routes
+│   │   ├── @profile/         # User profile slot
+│   │   └── @manage/          # Booking management slot
+│   └── page.tsx              # Home page
+├── components/               # Reusable UI components
+│   ├── Banner.tsx
+│   ├── BookingButton.tsx
+│   ├── BookingList.tsx
+│   ├── Card.tsx
+│   ├── CampgroundCatalog.tsx
+│   ├── DateReserve.tsx
+│   ├── InteractiveCard.tsx
+│   ├── TopMenu.tsx
+│   └── TopMenuItem.tsx
 ├── db/
-│   ├── dbConnect.ts         # Mongoose connection helper
-│   └── models/
-│       └── Campground.ts    # Campground Mongoose schema
-├── middleware.ts             # Protect /mybooking and /booking routes
-└── next-auth.d.ts            # NextAuth session type extension
-interface.ts                  # Shared TypeScript interfaces
+│   ├── dbConnect.ts          # MongoDB connection
+│   └── models/Campground.ts  # Campground Mongoose model
+├── libs/                     # API call utility functions
+│   ├── addBooking.tsx
+│   ├── deleteBooking.tsx
+│   ├── getBooking.tsx
+│   ├── getBookings.tsx
+│   ├── getCampground.tsx
+│   ├── getCampgrounds.tsx
+│   ├── getUserProfile.tsx
+│   ├── updateBooking.tsx
+│   ├── userLogIn.tsx
+│   └── userRegister.tsx
+├── providers/
+│   └── NextAuthProvider.tsx
+└── redux/
+    ├── features/bookSlice.ts
+    ├── store.ts
+    └── ReduxProvider.tsx
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- A running backend API at `http://localhost:5000`
-- MongoDB instance (used by the backend)
+- A running backend API (set via environment variables)
+- MongoDB instance
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone <your-repo-url>
 cd <project-folder>
-
-# Install dependencies
 npm install
 ```
 
 ### Environment Variables
 
-Create a `.env.local` file in the root:
+Create a `.env.local` file in the root of the project:
 
 ```env
+BACKEND_URL=<your-backend-api-url>
+MONGO_URI=<your-mongodb-connection-string>
+NEXTAUTH_SECRET=<your-nextauth-secret>
 NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_secret_here
-MONGO_URI=mongodb://localhost:27017/campground
 ```
 
-### Running the App
+### Running Locally
 
 ```bash
-# Development
 npm run dev
+```
 
-# Production build
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Build for Production
+
+```bash
 npm run build
 npm start
 ```
 
-The app will be available at `http://localhost:3000`.
+---
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home page with banner and welcome message |
+| `/campground` | Browse all campgrounds |
+| `/campground/[cid]` | Campground detail and booking button |
+| `/booking` | Create a new booking |
+| `/mybooking` | View profile and manage bookings |
+| `/login` | Login page |
+| `/register` | Register page |
+| `/logout` | Logout confirmation page |
 
 ---
 
-## 🔌 API Endpoints (Backend)
+## API Integration
 
-All requests go to `http://localhost:5000/api/v1/`
+All backend calls are handled through utility functions in `src/libs/`:
 
-| Method | Endpoint | Description | Auth Required |
-|---|---|---|---|
-| POST | `/auth/register` | Register a new user | No |
-| POST | `/auth/login` | Login and receive JWT | No |
-| GET | `/auth/me` | Get current user profile | Yes |
-| GET | `/campgrounds` | List all campgrounds | No |
-| GET | `/campgrounds/:id` | Get campground details | No |
-| POST | `/campgrounds/:id/bookings` | Create a booking | Yes |
-| GET | `/bookings` | Get user's bookings | Yes |
-| GET | `/bookings/:id` | Get a single booking | Yes |
-| PUT | `/bookings/:id` | Update a booking date | Yes |
-| DELETE | `/bookings/:id` | Delete a booking | Yes |
+- `getCampgrounds` / `getCampground` — Fetch campground data
+- `addBooking` / `getBooking` / `getBookings` — Booking CRUD
+- `updateBooking` / `deleteBooking` — Modify or remove bookings
+- `getUserProfile` — Fetch authenticated user profile
+- `userLogIn` / `userRegister` — Authentication
 
 ---
 
-## 🔐 Authentication Flow
+## Deployment
 
-1. User submits credentials on `/login`
-2. NextAuth calls `userLogIn()` → receives JWT token from backend
-3. `getUserProfile()` fetches user data using the token
-4. Session stores `{ _id, name, email, role, token }`
-5. Protected routes (`/mybooking`, `/booking`) are guarded via `middleware.ts`
+This project is deployed on **Vercel**.
+
+🔗 [https://fe-project-2026.vercel.app/](https://fe-project-2026.vercel.app/)
 
 ---
 
-## 📦 Key Design Decisions
+## License
 
-- **Parallel Routes** — `/mybooking` uses Next.js parallel routes (`@profile`, `@manage`) to render the profile and booking list simultaneously as independent slots.
-- **Redux Persist** — Booking state is persisted to `localStorage` so it survives page refreshes, with SSR-safe storage fallback for server rendering.
-- **Server vs Client Components** — Data fetching pages (campground listing, profile, booking management) are Server Components; interactive UI (booking form, booking list, banner) are Client Components.
-- **Middleware Protection** — `next-auth/middleware` is used to redirect unauthenticated users away from `/mybooking` and `/booking`.
+This project was built for educational purposes.
