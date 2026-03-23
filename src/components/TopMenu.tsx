@@ -14,7 +14,7 @@ export default async function TopMenu () {
 
       {/* Left Side */}
       <div className=" left-0 top-0 items-center flex flex-row h-full text-cyan-600">
-        <h1 className="w-[120px] text-center text-white text-3xl font-bold font-sans">LOGO</h1>
+        <h1 className="w-fit px-8 text-center text-white text-3xl font-bold font-sans">CampNest</h1>
         <TopMenuItem title="Home" pageRef="/"/>
         <TopMenuItem title="Campground" pageRef="/campground"/>
       </div>
