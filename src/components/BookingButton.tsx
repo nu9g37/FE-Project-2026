@@ -48,7 +48,7 @@ export default function BookingButton({ id, token, isEditing, onEdit, onCancel, 
   return (
     <div className="flex justify-end gap-2 mt-4">
       <button 
-        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+        className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
         onClick={onEdit}
       >
         Edit

@@ -37,9 +37,13 @@ export default function BookingList({ initialData, token }: Props) {
 
       dispatch(updateBookingSlice({ _id: id, bookingDate: formattedDate }));
 
+      alert("Update Booking Successfully");
+
       setEditingId(null);
       setEditDate(null);
     } catch (error) {
+      alert("Failed to update booking");
+
       console.error("Failed to update booking", error);
     }
   };
@@ -57,7 +61,7 @@ export default function BookingList({ initialData, token }: Props) {
             <div><span className="font-medium">Campground Tel.</span> {item.campground.tel}</div>
           </div>
 
-            <div className="border-t border-black my-3"></div>
+          <div className="border-t border-black my-3"></div>
 
           <div className="text-sm">
             {editingId === item._id ? (
